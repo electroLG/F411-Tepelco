@@ -537,42 +537,6 @@ int main(void)
 			  			error=LoRa_Send(&lr,&huart2);
 	  				}
 
-	  /*			if((lr.rxbuff[0]=='+')&&
-	  			   (lr.rxbuff[1]=='R')&&
-				   (lr.rxbuff[2]=='C')&&
-				   (lr.rxbuff[3]=='V'))
-				   {
-	  				lr.estado=RECIBIDO;
-	  				//LoRa_decodeRCV(&lr);
-	  				LoRa_set_sndTIMER(&lr);
-	  				lr.rxbuff[0]='\0';
-				   }
-
-	  			if((lr.rxbuff[0]=='+')&&
-	  			   (lr.rxbuff[1]=='E')&&
-				   (lr.rxbuff[2]=='R')&&
-				   (lr.rxbuff[3]=='R'))
-				   {
-	  				lr.rxbuff[0]='\0';
-				   }
-	  			if((lr.rxbuff[0]=='+')&&
-	  			   (lr.rxbuff[1]=='O')&&
-				   (lr.rxbuff[2]=='K'))
-				   {
-						ITM0_Write("Recibido +OK",strlen("Recibido +OK"));
-						lr.estado=ENVIADO;										//change state to ENVIADO
-						lr.rxbuff[0]='\0';									//Clean rxbuff_hld
-				   }*/
-
-	  			//CopiaVector(lr.txbuff,mb_eth._MBUS_RCVD,mb_eth._n_MBUS_RCVD,0,'A');
-
-	  			//lr.txbuff[0]='H';lr.txbuff[1]='O';lr.txbuff[2]='L';lr.txbuff[3]='A';
-	  			//lr.txitems=4;
-
-	  			//lr.txitems=mb_eth._n_MBUS_RCVD;
-	  			//ITM0_Write(lr.txbuff,strlen(lr.txbuff))
-
-
 	  		}
 
 	  		if (ESP_HW_Init==1) //Si el módulo se inició correctamente
@@ -1177,7 +1141,6 @@ if (ms_ticks==100)//(ms_ticks==250)//(ms_ticks==50)
 										mb_eth._w_answer=0;  									//Si el mensaje recibido ya es modbus digo que ya recibi
 										MB_TOUT_ticks=0;
 										ModBUS(&mb_eth);										//ModBUS protocol execution
-										//CopiaVector(ETH.data, mb_eth._MBUS_2SND, mb_eth._n_MBUS_2SND, 0, 0);
 										CopiaVector(ETH.swap, mb_eth._MBUS_RCVD, mb_eth._n_MBUS_RCVD, 0, 0);
 										CopiaVector(mb_wf._Holding_Registers, mb_eth._Holding_Registers, 64, 0, 0);
 										if (ETH_DBG_EN) ITM0_Write("\r\n RCVD MBUS REQ \r\n",strlen("\r\n\r\n RCVD MBUS REQ \r\n\r\n"));
@@ -1262,8 +1225,6 @@ if (ms_ticks==100)//(ms_ticks==250)//(ms_ticks==50)
 	  }
 	  }else
 	  	  {
-		  //ETH.operacion=SPI_READ;
-		  //ETH.TX[3]=0x00;
 		  SPI_ETH(&ETH);
 	  	  }
 	  if(min_ticks==2)//if(min_ticks==10)
@@ -1312,7 +1273,6 @@ if(wf._ejecucion==1)
 				HAL_UART_Receive_IT(&huart1,(uint8_t *)UART_RX_byte,1);
 				EN_UART1_TMR=0; //OBS-VER Para que me vuelva a habilitar el timer
 			}
-			//wf._ticks=0;
 		}
 		if ((wf._instruccion==2)&&(wf._ticks2 > 20500)) //if (wf._ticks > 5000)
 		{
@@ -1322,7 +1282,6 @@ if(wf._ejecucion==1)
 				HAL_UART_Receive_IT(&huart1,(uint8_t *)UART_RX_byte,1);
 				EN_UART1_TMR=0; //OBS-VER Para que me vuelva a habilitar el timer
 			}
-			//wf._ticks=0;
 		}
 
 	}
@@ -1340,16 +1299,10 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *ERRUART)
 		 volatile int aore=0;
 		 volatile int bore=0;
 
-		// if ( UART_FLAG_ORE == HAL_UART_GetError(huart1))
-		//{
-		//Al leer los registros de esta forma SR y luego DR se resetean los errores de Framing Noise y Overrun FE NE ORE
-		//}
 			 wf._debug_count9++;
 			aore=ERRUART->Instance->SR;
 			bore=ERRUART->Instance->DR;
 
-
-		//HAL_UART_Transmit_IT(&huart5,"U4",strlen("U4"));
 		 HAL_UART_DeInit(ERRUART);
 		 MX_USART1_UART_Init();
 		 HAL_UART_Receive_IT(ERRUART,(uint8_t *)UART_RX_byte,1);
@@ -1359,16 +1312,10 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *ERRUART)
 		 volatile int aore=0;
 		 volatile int bore=0;
 
-		// if ( UART_FLAG_ORE == HAL_UART_GetError(huart1))
-		//{
-		//Al leer los registros de esta forma SR y luego DR se resetean los errores de Framing Noise y Overrun FE NE ORE
-		//}
 			 wf._debug_count9++;
 			aore=ERRUART->Instance->SR;
 			bore=ERRUART->Instance->DR;
 
-
-		//HAL_UART_Transmit_IT(&huart5,"U4",strlen("U4"));
 		 HAL_UART_DeInit(ERRUART);
 		 MX_USART2_UART_Init();
 		 HAL_UART_Receive_IT(ERRUART,(uint8_t *)UART_RX_byte,1);
