@@ -449,7 +449,13 @@ int main(void)
 	  								ModBUS_F03_Read(&mb_eth,6),
 	  								ModBUS_F03_Read(&mb_eth,7),
 	  								ModBUS_F03_Read(&mb_eth,8),
-									ModBUS_F03_Read(&mb_eth,9),TEST_1,//ModBUS_F03_Read(&mb_eth,9),TEPELCO,
+									ModBUS_F03_Read(&mb_eth,9),
+									ModBUS_F03_Read(&mb_eth,10),
+									ModBUS_F03_Read(&mb_eth,11),
+									ModBUS_F03_Read(&mb_eth,12),
+									ModBUS_F03_Read(&mb_eth,13),
+									ModBUS_F03_Read(&mb_eth,14),
+									ModBUS_F03_Read(&mb_eth,15),TEST_1,//ModBUS_F03_Read(&mb_eth,9),TEPELCO,
 	  								post, body, 512))
 
 	  				{
@@ -1419,7 +1425,7 @@ uint8_t ESP8266_HW_Init(UART_HandleTypeDef *SerialPort) //Devuelve 1 si reiniciÃ
 		  wf._n_fcomp=strlen("ready");
 		  wf._n_orig=UART_RX_items;
 
-		  while(FT_String_ND(UART_RX_vect_hld,&wf._n_orig,"ready",&wf._n_fcomp,wf._uartRCVD_tok,&wf._n_tok,&ntestc,&wf._id_conn,FIND)!=1)
+		  while(FT_String_ND(UART_RX_vect_hld,&wf._n_orig,"ready",&wf._n_fcomp,wf._uartRCVD_tok,&wf._n_tok,&ntestc,&wf._id_conn,&wf._overflowVector,FIND)!=1)
 		  {
 			  	  wf._n_orig=UART_RX_items;
 			  	  if (ESP_ticks>=5000)
@@ -1433,7 +1439,7 @@ uint8_t ESP8266_HW_Init(UART_HandleTypeDef *SerialPort) //Devuelve 1 si reiniciÃ
 		  {
 			  wf._n_fcomp=strlen("ready");
 			  wf._n_orig=UART_RX_items;
-			  while(FT_String_ND(UART_RX_vect_hld,&wf._n_orig,"ready",&wf._n_fcomp,wf._uartRCVD_tok,&wf._n_tok,&ntestc,&wf._id_conn,FIND)!=1)
+			  while(FT_String_ND(UART_RX_vect_hld,&wf._n_orig,"ready",&wf._n_fcomp,wf._uartRCVD_tok,&wf._n_tok,&ntestc,&wf._id_conn,&wf._overflowVector,FIND)!=1)
 			  {
 				  wf._n_orig=UART_RX_items;
 				  if (ESP_ticks>=5000)
