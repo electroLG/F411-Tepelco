@@ -71,7 +71,7 @@ struct MBUS mb_wf;		// Instancia Wi-Fi
 
 char post[512];
 char body[512];
-char ENDPOINT[]="/tepelco",
+char ENDPOINT[]="/logdata",
      SERVER_IP[]="192.168.0.91",
      PORT[]="8000";
 
@@ -238,7 +238,7 @@ int main(void)
 		ETH.SIPR[0]=192;
 		ETH.SIPR[1]=168;
 		ETH.SIPR[2]=0;
-		ETH.SIPR[3]=6,//ETH.SIPR[3]=34,
+		ETH.SIPR[3]=34,//ETH.SIPR[3]=6,
 	//  Socket RX memory
 		ETH.RMSR=0x55;
 	//  Socket TX memory
@@ -311,6 +311,7 @@ int main(void)
 		wf._n_D2SND=12;
 		wf._estado_conexion=100;//Si no se define no arranca	//wf._estado_conexion=1;					//Arranco en WiFi Desconectado
 		wf._automatizacion=WF_CONNECT_TCP;//wf._automatizacion=WF_SEND;
+		wf._NO_IP=1;
 		wf._DBG_EN=1;
 		//wf._send_data=1;
 		// ----------- INICIO - Seteo de módulo Ethernet W5100 ----------- //
@@ -450,12 +451,12 @@ int main(void)
 	  								ModBUS_F03_Read(&mb_eth,7),
 	  								ModBUS_F03_Read(&mb_eth,8),
 									ModBUS_F03_Read(&mb_eth,9),
-									ModBUS_F03_Read(&mb_eth,10),
-									ModBUS_F03_Read(&mb_eth,11),
-									ModBUS_F03_Read(&mb_eth,12),
-									ModBUS_F03_Read(&mb_eth,13),
-									ModBUS_F03_Read(&mb_eth,14),
-									ModBUS_F03_Read(&mb_eth,15),TEST_1,//ModBUS_F03_Read(&mb_eth,9),TEPELCO,
+									0,
+									0,
+									0,
+									0,
+									0,
+									0,TEPELCO,//ModBUS_F03_Read(&mb_eth,9),TEPELCO,
 	  								post, body, 512))
 
 	  				{
