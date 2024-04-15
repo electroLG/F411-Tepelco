@@ -1,0 +1,13 @@
+C:/STM32-IDE/STM32-Library/ModBUS/ModBUS_Chelo.c:9:6:ModBUS_Config	0	static
+C:/STM32-IDE/STM32-Library/ModBUS/ModBUS_Chelo.c:42:5:ModBUS_Check	0	static
+C:/STM32-IDE/STM32-Library/ModBUS/ModBUS_Chelo.c:55:5:ModBUS_Check_tid	0	static
+C:/STM32-IDE/STM32-Library/ModBUS/ModBUS_Chelo.c:73:5:ModBUS_F03_Assign	0	static
+C:/STM32-IDE/STM32-Library/ModBUS/ModBUS_Chelo.c:91:5:ModBUS_F04_Assign	0	static
+C:/STM32-IDE/STM32-Library/ModBUS/ModBUS_Chelo.c:109:10:ModBUS_F03_Read	0	static
+C:/STM32-IDE/STM32-Library/ModBUS/ModBUS_Chelo.c:131:10:ModBUS_F04_Read	0	static
+C:/STM32-IDE/STM32-Library/ModBUS/ModBUS_Chelo.c:153:1:ModBUS_F03_Request	0	static
+C:/STM32-IDE/STM32-Library/ModBUS/ModBUS_Chelo.c:177:5:ModBUS	24	static
+C:/STM32-IDE/STM32-Library/ModBUS/ModBUS_Chelo.c:1147:9:Verificar_CRC16	12	static
+C:/STM32-IDE/STM32-Library/ModBUS/ModBUS_Chelo.c:1177:7:Agregar_CRC16aTXVect	20	static
+C:/STM32-IDE/STM32-Library/ModBUS/ModBUS_Chelo.c:1225:9:processAnswerModbusRTU	8	static
+C:/STM32-IDE/STM32-Library/ModBUS/ModBUS_Chelo.c:1245:7:createCommandRTU	8	static

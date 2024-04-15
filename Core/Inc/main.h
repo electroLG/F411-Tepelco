@@ -57,14 +57,18 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define PCB_LED_Pin GPIO_PIN_13
-#define PCB_LED_GPIO_Port GPIOC
-#define KEY_BTN_Pin GPIO_PIN_0
-#define KEY_BTN_GPIO_Port GPIOA
+#define USART2_DBG_TX_Pin GPIO_PIN_2
+#define USART2_DBG_TX_GPIO_Port GPIOA
+#define USART2_DBG_RX_Pin GPIO_PIN_3
+#define USART2_DBG_RX_GPIO_Port GPIOA
 #define SPI1_NSS_Pin GPIO_PIN_4
 #define SPI1_NSS_GPIO_Port GPIOA
 #define WiFi_EN_Pin GPIO_PIN_8
 #define WiFi_EN_GPIO_Port GPIOA
+#define USART1_WF_TX_Pin GPIO_PIN_9
+#define USART1_WF_TX_GPIO_Port GPIOA
+#define USART1_WF_RX_Pin GPIO_PIN_10
+#define USART1_WF_RX_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -1,0 +1,14 @@
+../Core/Src/main.c:781:13:MX_USART1_UART_Init	8	static,ignoring_inline_asm
+../Core/Src/main.c:814:13:MX_USART2_UART_Init	8	static,ignoring_inline_asm
+../Core/Src/main.c:573:6:SystemClock_Config	88	static,ignoring_inline_asm
+../Core/Src/main.c:924:5:ITM0_Write	12	static,ignoring_inline_asm
+../Core/Src/main.c:935:6:SysTick_Handler	48	static
+../Core/Src/main.c:1301:6:HAL_UART_ErrorCallback	24	static
+../Core/Src/main.c:1332:6:HAL_TIM_ErrorCallback	0	static
+../Core/Src/main.c:1339:6:HAL_UART_RxCpltCallback	8	static
+../Core/Src/main.c:1367:6:HAL_TIM_OC_DelayElapsedCallback	32	static
+../Core/Src/main.c:1411:6:ESP8266_HW_Reset	8	static
+../Core/Src/main.c:1420:9:ESP8266_HW_Init	64	static
+../Core/Src/main.c:214:5:main	200	static,ignoring_inline_asm
+../Core/Src/main.c:1475:6:BorrarVect	0	static
+../Core/Src/main.c:1488:6:Error_Handler	0	static,ignoring_inline_asm
