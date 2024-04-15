@@ -69,6 +69,7 @@ void Error_Handler(void);
 #define USART1_WF_TX_GPIO_Port GPIOA
 #define USART1_WF_RX_Pin GPIO_PIN_10
 #define USART1_WF_RX_GPIO_Port GPIOA
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
