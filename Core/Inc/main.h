@@ -57,6 +57,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define PCB_LED_Pin GPIO_PIN_13
+#define PCB_LED_GPIO_Port GPIOC
+#define KEY_BTN_Pin GPIO_PIN_0
+#define KEY_BTN_GPIO_Port GPIOA
 #define USART2_DBG_TX_Pin GPIO_PIN_2
 #define USART2_DBG_TX_GPIO_Port GPIOA
 #define USART2_DBG_RX_Pin GPIO_PIN_3
