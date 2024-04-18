@@ -122,9 +122,9 @@ uint8_t spi_Data[64],
 char	UART1_WF_RX_vect[512],
 		UART2_RX_vect[512],
 		UART1_WF_RX_vect_hld[512],
-		WIFI_NET[]="Fibertel WiFi967 2.4GHz",//WIFI_NET[]="PLC_DEV",//
-		WIFI_PASS[]="0042880756",//WIFI_PASS[]="12345678",//
-		TCP_SERVER[]="192.168.0.134",//"192.168.0.91",//TCP_SERVER[]="192.168.0.65",//TCP_SERVER[]="192.168.0.102",//TCP_SERVER[]="192.168.0.47",
+		WIFI_NET[]="PLC_DEV",//WIFI_NET[]="Fibertel WiFi967 2.4GHz",//WIFI_NET[]="PLC_DEV",//
+		WIFI_PASS[]="12345678",//WIFI_PASS[]="0042880756",//WIFI_PASS[]="12345678",//
+		TCP_SERVER[]="192.168.0.91",//"192.168.0.91",//TCP_SERVER[]="192.168.0.65",//TCP_SERVER[]="192.168.0.102",//TCP_SERVER[]="192.168.0.47",
 		TCP_PORT[]="8000",//TCP_PORT[]="502",
 		TCP_SERVER_LOCAL[]="192.168.0.35",//TCP_SERVER_LOCAL[]="192.168.0.33",//TCP_SERVER[]="192.168.0.47",
 		TCP_SERVER_LOCAL_GWY[]="192.168.0.99",//TCP_SERVER[]="192.168.0.47",
@@ -146,7 +146,7 @@ int UART1_WF_RX_items=0,
 	items_rx=0,
 	UART1_WF_RX_pos=0,
 	ETH_DBG_EN=1,
-	WF_SER_DBG=0,
+	WF_SER_DBG=1,					//Debug serial habilitado
 	wf_snd_flag_ticks=0;
 
 
@@ -793,13 +793,13 @@ void SysTick_Handler(void)
 
 /**********************[ FIN 	- EHTERNET WDG ] **********************/
 
-if (ms_ticks==100)
+if (ms_ticks==300)
   {
 	dbgn++;
 	ms_ticks=0;
 	min_ticks++;
 
-  	if(MBUS_ticks==360) MBUS_ticks=0;
+  	//if(MBUS_ticks==360) MBUS_ticks=0;
 
   /*	if (asc==0)  MBUS_ticks++;
   	if (MBUS_ticks==100) asc=1;
@@ -888,7 +888,7 @@ if (ms_ticks==100)
 								CopiaVector(mb_eth._MBUS_RCVD, ETH.data, S0_get_size, 0, 0 );
 								mb_eth._n_MBUS_RCVD=S0_get_size;
 
-								if(S0_get_size > 0)	{ ETH.S0_data_available=1;}					//Flag data received
+								//if(S0_get_size > 0)	{ ETH.S0_data_available=1;}					//Flag data received
 
 								if(ModBUS_Check(mb_eth._MBUS_RCVD, mb_eth._n_MBUS_RCVD))		//Ckecks ModBUS type data
 								{
@@ -957,7 +957,7 @@ if (ms_ticks==100)
 								CopiaVector(mb_eth._MBUS_RCVD, ETH.data, S0_get_size, 0, 0 );
 								mb_eth._n_MBUS_RCVD=S0_get_size;
 
-								if(S0_get_size > 0)	{ ETH.S0_data_available=1;}
+								//if(S0_get_size > 0)	{ ETH.S0_data_available=1;}
 
 								if(ModBUS_Check(mb_eth._MBUS_RCVD, mb_eth._n_MBUS_RCVD))		//Ckecks ModBUS type data
 									{
@@ -966,7 +966,12 @@ if (ms_ticks==100)
 										ModBUS(&mb_eth);										//ModBUS protocol execution
 										CopiaVector(ETH.swap, mb_eth._MBUS_RCVD, mb_eth._n_MBUS_RCVD, 0, 0);
 										CopiaVector(mb_wf._Holding_Registers, mb_eth._Holding_Registers, 64, 0, 0);
-										if (ETH_DBG_EN == 1) {ITM0_Write("\r\n RCVD MBUS REQ \r\n",strlen("\r\n\r\n RCVD MBUS REQ \r\n\r\n"));}
+										ETH.S0_data_available=1;	//Informa que se ha recibido un dato y es ModBUS
+										if (ETH_DBG_EN == 1)
+										{
+											HAL_UART_Transmit_IT(&huart2,"\r\nMBUS RCVD\r\n",strlen("\r\nMBUS RCVD\r\n"));
+											ITM0_Write("\r\n RCVD MBUS REQ \r\n",strlen("\r\n\r\n RCVD MBUS REQ \r\n\r\n"));
+										}
 									}
 									else
 										{
@@ -1120,9 +1125,14 @@ if(wf._ejecucion==1)
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *ERRUART)
 
 {
+
+
 	if(ERRUART->Instance==USART1)
 	{
-		 volatile int aore=0;
+
+		HAL_UART_Transmit_IT(&huart2,"\r\nUART1ERR\r\n",strlen("\r\nUART1ERR\r\n"));
+
+		volatile int aore=0;
 		 volatile int bore=0;
 
 			 wf._debug_count9++;

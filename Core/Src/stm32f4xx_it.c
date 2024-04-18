@@ -76,6 +76,8 @@ void NMI_Handler(void)
   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
   while (1)
   {
+		HAL_UART_Transmit_IT(&huart2,"\r\nNMIERR\r\n",10);
+		HAL_Delay(1000);
   }
   /* USER CODE END NonMaskableInt_IRQn 1 */
 }
@@ -91,6 +93,8 @@ void HardFault_Handler(void)
   while (1)
   {
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+		HAL_UART_Transmit_IT(&huart2,"\r\nHARDERR\r\n",11);
+		HAL_Delay(1000);
     /* USER CODE END W1_HardFault_IRQn 0 */
   }
 }
@@ -106,6 +110,8 @@ void MemManage_Handler(void)
   while (1)
   {
     /* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
+		HAL_UART_Transmit_IT(&huart2,"\r\nMEMERR\r\n",10);
+		HAL_Delay(1000);
     /* USER CODE END W1_MemoryManagement_IRQn 0 */
   }
 }
@@ -121,6 +127,8 @@ void BusFault_Handler(void)
   while (1)
   {
     /* USER CODE BEGIN W1_BusFault_IRQn 0 */
+		HAL_UART_Transmit_IT(&huart2,"\r\nBUSERR\r\n",10);
+		HAL_Delay(1000);
     /* USER CODE END W1_BusFault_IRQn 0 */
   }
 }
@@ -136,6 +144,8 @@ void UsageFault_Handler(void)
   while (1)
   {
     /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
+		HAL_UART_Transmit_IT(&huart2,"\r\nUSGERR\r\n",10);
+		HAL_Delay(1000);
     /* USER CODE END W1_UsageFault_IRQn 0 */
   }
 }
@@ -150,6 +160,12 @@ void SVC_Handler(void)
   /* USER CODE END SVCall_IRQn 0 */
   /* USER CODE BEGIN SVCall_IRQn 1 */
 
+	while(1)
+	{
+		HAL_UART_Transmit_IT(&huart2,"\r\nSVCERR\r\n",10);
+		HAL_Delay(1000);
+	}
+
   /* USER CODE END SVCall_IRQn 1 */
 }
 
@@ -162,7 +178,11 @@ void DebugMon_Handler(void)
 
   /* USER CODE END DebugMonitor_IRQn 0 */
   /* USER CODE BEGIN DebugMonitor_IRQn 1 */
-
+	while(1)
+	{
+		HAL_UART_Transmit_IT(&huart2,"\r\nDEVERR\r\n",10);
+		HAL_Delay(1000);
+	}
   /* USER CODE END DebugMonitor_IRQn 1 */
 }
 
